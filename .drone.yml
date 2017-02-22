@@ -24,6 +24,6 @@ deploy:
         method: POST
         auth:
             username: CICD1
-            password: CICD
+            password: CICD1
         urls:
             - https://control.sandbox.imapex.io/marathon/v2/apps/class/hyokoyam/restart?force=true
