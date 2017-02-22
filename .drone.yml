@@ -16,3 +16,14 @@ publish:
         username: hyokoyam
         password: SPulse1992
         email: hyokoyam@cisco.com
+
+deploy:
+    webhook:
+        image: plugins/drone-webhook
+        skip_verify: true
+        method: POST
+        auth:
+            username: CICD1
+            password: CICD
+        urls:
+            - https://control.sandbox.imapex.io/marathon/v2/apps/class/hyokoyam/restart?force=true
