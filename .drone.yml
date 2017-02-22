@@ -11,11 +11,11 @@ build:
 
 publish:
     docker:
-        repo: hyokoyam/cicd_demoapp
+        repo: $$DOCKER_USERNAME/cicd_demoapp
         tag: latest
-        username: hyokoyam
-        password: SPulse1992
-        email: hyokoyam@cisco.com
+        username: $$DOCKER_USERNAME
+        password: $$DOCKER_PASSWORD
+        email: $$DOCKER_EMAIL
 
 deploy:
     webhook:
@@ -23,7 +23,14 @@ deploy:
         skip_verify: true
         method: POST
         auth:
-            username: CICD1
-            password: CICD1
+            username: $$MANTL_USERNAME
+            password: $$MANTL_PASSWORD
         urls:
-            - https://control.sandbox.imapex.io/marathon/v2/apps/class/hyokoyam/restart?force=true
+            - https://$$MANTL_CONTROL/marathon/v2/apps/class/$$DOCKER_USERNAME/restart?force=true
+
+notify:
+    spark:
+        image: hpreston/drone-spark
+        auth_token: $$SPARK_TOKEN
+        roomId: $$SPARK_ROOM            
+
